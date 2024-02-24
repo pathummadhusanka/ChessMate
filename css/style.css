@@ -1,0 +1,33 @@
+:root {
+    --board-size: 560px;
+    --light-square-color: rgb(186, 216, 186);
+    --dark-square-color: rgb(41, 179, 64);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#board {
+    width: var(--board-size);
+    height: var(--board-size);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#board .square {
+    width: calc(var(--board-size) / 8);
+    height: calc(var(--board-size) / 8);
+}
+
+#board .square.light {
+    background-color: var(--light-square-color);
+}
+
+#board .square.dark {
+    background-color: var(--dark-square-color);
+}
