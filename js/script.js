@@ -1,3 +1,6 @@
+let playerTurn = 'light';
+let selectedPiece = null;
+
 function createBoard() {
     const board = document.createElement('div');
     board.setAttribute('id', 'board');
@@ -65,6 +68,7 @@ function initPieces() {
             const pieceElement = document.createElement('div');
             pieceElement.classList.add('piece');
             pieceElement.setAttribute('draggable', 'true');
+            pieceElement.classList.add(initPiecePositions[j][0], initPiecePositions[j][1]);
 
             pieceElement.innerHTML = `<img src="./img/piece/${initPiecePositions[j][0]}-${initPiecePositions[j][1]}.webp" alt="${initPiecePositions[j][0]}-${initPiecePositions[j][1]}">`;
 
@@ -74,3 +78,34 @@ function initPieces() {
 }
 
 initPieces();
+
+function piceClicks() {
+    const squares = document.querySelectorAll('.square');
+    
+    squares.forEach((square, id) => {
+        square.addEventListener('click', () => {
+            if(square.firstChild && square.firstChild.classList.contains('piece')) {
+
+                if((playerTurn === 'light' && square.firstChild.classList.contains('light')) || (playerTurn === 'dark' && square.firstChild.classList.contains('dark'))) {
+                    if(selectedPiece) {
+                        if(selectedPiece === id) {
+                            square.classList.remove('selected');
+                            selectedPiece = null;
+                        }else {
+                            squares.forEach((oldSelectedSquare, oldId) => {
+                                oldId === selectedPiece ? oldSelectedSquare.classList.remove('selected'): undefined;
+                            });
+                            square.classList.add('selected');
+                            selectedPiece = id;
+                        }
+                    }else {
+                        square.classList.add('selected');
+                        selectedPiece = id;
+                    }
+                }
+            }
+        });
+    });
+}
+
+piceClicks();

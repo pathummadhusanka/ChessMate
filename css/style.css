@@ -2,6 +2,7 @@
     --board-size: 560px;
     --light-square-color: rgb(186, 216, 186);
     --dark-square-color: rgb(41, 179, 64);
+    --selected-square-color: rgb(202, 201, 100);
 }
 
 * {
@@ -42,4 +43,8 @@
     width: 80%;
     height: 80%;
     margin: 10%;
+}
+
+#board .square.selected {
+    background-color: var(--selected-square-color);
 }
